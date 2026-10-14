@@ -1,0 +1,513 @@
+FINAL ROUND 6 COVERAGE FEEDBACK
+
+Current cumulative branch coverage after Round 5:
+56.42%
+
+Branch outcomes covered:
+1950 / 3456
+
+Previous coverage:
+Round 1: 34.16%
+Round 2: 35.73%
+Round 3: 37.79%
+Round 4: 44.59%
+Round 5: 56.42%
+Claude-only baseline: 39.55%
+
+Round 5 produced a very large improvement, so Round 6 must NOT repeat
+the same general regex tests.
+
+Generate exactly 30 NEW highly targeted tests.
+
+This is the FINAL optimization round.
+
+==========================================================
+MOST IMPORTANT TARGET 1:
+BACKREFERENCES + -w WORD-BOUNDARY FALLBACK
+==========================================================
+
+Latest gcov shows that EGexecute reached the Regex fallback for
+backreference-containing patterns, but the match_words loop around
+lines 10817-10840 was never executed.
+
+This is a HIGH PRIORITY target.
+
+Create multiple tests combining:
+
+-G
+-w
+backreferences
+
+The DFA must encounter a backreference so that grep falls back to
+re_search/re_match rather than succeeding only through DFA.
+
+Use patterns such as structurally DIFFERENT forms of:
+
+\(ab\)\1
+\(a*\)\1
+\([a-z]\)\1
+\([^a-z]\)\1
+\(ab\|cd\)\1
+\(.\)\1
+
+Design input so that:
+
+1. an embedded match fails the word-boundary check, followed later by
+   a valid standalone match;
+
+2. a match begins after a word character;
+
+3. a match ends before a word character;
+
+4. the first candidate is rejected and grep must search farther;
+
+5. an alternative can produce different match lengths.
+
+Example input shape:
+
+xababY abab
+xab ab
+aaX aa
+foo abab bar
+
+DO NOT simply duplicate Round 5's backreference commands.
+
+==========================================================
+TARGET 2:
+BACKREFERENCES + -x WHOLE-LINE MATCHING
+==========================================================
+
+Exercise EGexecute's match_lines behavior using regex patterns that
+contain backreferences.
+
+Use -G -x with patterns such as:
+
+^\(ab\)\1$
+^\(a*\)\1$
+^\([a-z]\)\1$
+^\(ab\|cd\)\1$
+
+Include:
+
+- exact whole-line matches
+- partial matches
+- extra prefix/suffix characters
+- empty/nullable group behavior
+
+The goal is to force Regex fallback while match_lines is enabled.
+
+==========================================================
+TARGET 3:
+CASE-FOLDED REGEX FALLBACK
+==========================================================
+
+Latest re_match_2 coverage still has an unexercised translation path.
+
+Use -i together with BACKREFERENCES so execution reaches the full
+regex matcher with case folding.
+
+Examples of behavior to target:
+
+-G -i with \(ab\)\1
+-G -i -w with \([a-z]\)\1
+-G -i -x with grouped/backreference patterns
+
+Use mixed-case input such as:
+
+ABab
+AbAB
+aa
+AA
+xABabY
+ABab
+
+The important requirement is:
+DO NOT use simple patterns that DFA can finish without Regex fallback.
+
+==========================================================
+TARGET 4:
+REGEX BACKTRACKING AND NULLABLE NESTED GROUPS
+==========================================================
+
+Source comments in the matcher specifically describe difficult nested
+group/repetition cases.
+
+Create tests based on structures similar to:
+
+\(a*\)*b
+
+and deeply nested nullable repetitions similar to:
+
+\(\(a*\)*\(b*\)*\)*
+
+Use inputs such as:
+
+ab
+aaab
+aba
+aaaaab
+b
+empty line
+
+Also create overlapping alternatives/repetition such as:
+
+\(a\|ab\)*b
+\(ab\|a\)*b
+\(a*\)\1b
+\(a*\)*a
+
+Goal:
+exercise failure-stack pushing, backtracking, group start/stop state,
+nullable-group handling, and alternate match restoration.
+
+Most should be VALID regexes.
+
+==========================================================
+TARGET 5:
+DOT / CHARACTER SET + BACKREFERENCE
+==========================================================
+
+The full re_match_2 matcher still has incompletely exercised paths for
+any-character and charset matching.
+
+Force them through Regex fallback by combining them with backreferences.
+
+Examples:
+
+\(.\)\1
+\([a-z]\)\1
+\([^a-z]\)\1
+\([[:digit:]]\)\1
+
+Combine some with:
+
+-i
+-w
+-x
+
+Input should contain both successful and failing candidates.
+
+==========================================================
+TARGET 6:
+POSIX CHARACTER CLASSES NOT YET WELL COVERED
+==========================================================
+
+Round 5 already used:
+alpha
+digit
+alnum
+space
+punct
+upper
+lower
+xdigit
+
+Focus especially on classes still showing unexercised class-processing
+branches:
+
+[[:blank:]]
+[[:cntrl:]]
+[[:graph:]]
+[[:print:]]
+
+Use controlled printf input.
+
+Combine classes with:
+
+anchors
++
+*
+{m,n}
+negated bracket expressions
+-i where useful
+
+Also test more than one class in a single bracket-oriented regex.
+
+==========================================================
+TARGET 7:
+INTERVAL FORMS NOT REPEATING ROUND 5
+==========================================================
+
+Exercise distinct interval parser forms.
+
+Basic regex forms where supported:
+
+a\{3\}
+a\{3,\}
+a\{,3\}
+a\{0,1\}
+
+Extended regex forms where supported:
+
+a{3}
+a{3,}
+a{,3}
+a{0,1}
+
+Use matching and nonmatching input.
+
+Include ONLY a small number of malformed interval tests if they target
+a genuinely different parser branch.
+
+Do not repeat a{2,4} or a{3,1} from Round 5.
+
+==========================================================
+TARGET 8:
+ANCHOR CONTEXT AND INTERNAL NEWLINE ALTERNATION
+==========================================================
+
+Target syntax/parser branches involving anchors in unusual valid
+contexts.
+
+Use multiple -e regex patterns in a SINGLE grep execution so grep
+internally combines patterns and exercises newline-alternation logic.
+
+Create cases involving:
+
+$ immediately before an alternation
+$ immediately before a closing group
+^ immediately after an alternation
+anchors inside grouped alternatives
+
+Examples of pattern shapes:
+
+ab$\|^cd
+\(ab$\)\|^cd
+\(a\|^b\)
+-e '^foo$' -e 'bar$' -e '^baz'
+
+Use -G and/or -E as appropriate.
+
+==========================================================
+TARGET 9:
+FIXED STRING WITH NO TRAILING NEWLINE
+==========================================================
+
+Latest Fexecute coverage shows the branch where no newline is found
+after a successful fixed-string match is still uncovered.
+
+This is a HIGH PRIORITY and likely reachable branch.
+
+Use printf WITHOUT a trailing \n.
+
+Examples of behavior:
+
+printf 'foo' | grep.exe -F foo
+printf 'foo' | grep.exe -F -x foo
+printf 'xfooX' | grep.exe -F -w foo
+printf 'xfooX foo' | grep.exe -F -w foo
+
+Design several distinct tests where the final input line has NO newline.
+
+Include -F -x and -F -w cases.
+
+==========================================================
+TARGET 10:
+FIXED -w INVALID CANDIDATE THEN LATER VALID CANDIDATE
+==========================================================
+
+Fexecute's whole-word search still has uncovered loop outcomes.
+
+Use input where the first fixed-string occurrence is embedded in a
+word and therefore rejected, but another later occurrence is a valid
+whole word.
+
+Examples of input shapes:
+
+xfooX foo
+foobar foo
+xbarY bar
+abcfoo foo
+
+Use:
+
+-F -w
+
+and multiple fixed patterns in some tests.
+
+Also create at least one no-trailing-newline version.
+
+==========================================================
+TARGET 11:
+EMPTY FIXED STRING
+==========================================================
+
+The kwset executor still has an uncovered path involving a minimum
+keyword length of zero.
+
+Create a controlled test using an EMPTY fixed pattern, for example
+through:
+
+-F -e ''
+
+Use small controlled stdin.
+
+Also consider:
+
+-F -x -e ''
+-F -w -e ''
+
+where valid/useful.
+
+Do not create multiple redundant empty-pattern tests.
+
+==========================================================
+TARGET 12:
+DUPLICATE FIXED KEYWORDS
+==========================================================
+
+The keyword insertion code still has an incompletely exercised
+"already accepting" path.
+
+Create a test containing exact duplicate fixed patterns, e.g. repeated
+-e values in ONE grep command.
+
+Example structure:
+
+-F -e foo -e foo -e bar -e bar
+
+Use controlled input.
+
+The purpose is keyword-trie insertion behavior, not just matching.
+
+==========================================================
+TARGET 13:
+KEYWORD TREE ROTATIONS / INSERTION ORDER
+==========================================================
+
+kwsincr still has uncovered balancing/rotation branches.
+
+Generate several -F commands with MANY one-character and short
+keywords inserted in intentionally different orders.
+
+Use one command with ascending-ish order, e.g.:
+
+-e a -e b -e c -e d -e e -e f -e g -e h
+
+Another with descending-ish order:
+
+-e h -e g -e f -e e -e d -e c -e b -e a
+
+Another with mixed order:
+
+-e d -e b -e f -e a -e c -e e -e g
+
+Also use prefix-sharing strings such as:
+
+a
+aa
+aaa
+aab
+ab
+aba
+abb
+b
+ba
+baa
+
+The goal is to exercise different left/right balancing cases in the
+keyword tree.
+
+Each is still ONE grep.exe invocation.
+
+==========================================================
+TARGET 14:
+LARGE NUMBER OF CAPTURE GROUPS
+==========================================================
+
+re_match_2 still has unexercised register-allocation decisions.
+
+Create at least one VALID regex containing MANY capture groups,
+preferably more than 30 if supported by this grep implementation.
+
+Use -E if that makes construction cleaner.
+
+Example concept only:
+
+(a)(b)(c)... many groups ...
+
+Use controlled matching input.
+
+Do NOT create an absurdly long command. Keep it reasonable.
+
+The purpose is to exercise the alternate MAX/register allocation path,
+not to cause memory failure.
+
+==========================================================
+TARGET 15:
+ESCAPED REGEX SPECIAL CHARACTERS
+==========================================================
+
+Target lex branches involving escaped characters that were not
+thoroughly exercised.
+
+Include carefully controlled valid patterns involving:
+
+literal backslash
+escaped ^
+escaped $
+escaped <
+escaped >
+escaped b/B behavior
+literal + or ? in basic regex
+operator \+ and \? in basic regex where supported
+
+Use input that demonstrates both literal and operator interpretations.
+
+Do not spend many tests here; use only structurally different cases.
+
+==========================================================
+STRICT ROUND 6 RULES
+==========================================================
+
+1. Generate EXACTLY 30 tests.
+
+2. Each test must contain EXACTLY ONE grep.exe execution.
+
+3. Pipes using printf, echo, or cat are allowed.
+
+4. Do NOT use:
+   ;
+   &&
+   ||
+
+5. Do not invent input files.
+
+6. Prefer controlled printf stdin so input structure is known.
+
+7. Do NOT duplicate Round 5 commands.
+
+8. Most tests should exit 0 or 1 and reach deep matcher execution.
+
+9. Only a very small number of error-producing tests are acceptable.
+
+10. Do NOT intentionally target:
+    malloc failure
+    realloc failure
+    obstack allocation failure
+    mmap failure
+    impossible pointer/API states
+    stdout write failure
+    filesystem corruption
+
+11. Do NOT spend tests on ordinary option parsing. main() is already
+    approximately saturated.
+
+12. Highest priority:
+    backreference + -w
+    backreference + -x
+    backreference + -i
+    nested nullable backtracking
+    fixed strings without trailing newline
+    fixed -w invalid-then-valid candidates
+    empty fixed pattern
+    duplicate keywords
+    keyword insertion/tree rotation
+    missing POSIX classes
+
+13. Every generated test must include a concise reason explaining
+    WHICH uncovered behavior it targets.
+
+14. This is the final optimization round. Diversity and new branch
+    coverage matter more than producing superficially different
+    versions of already-covered commands.

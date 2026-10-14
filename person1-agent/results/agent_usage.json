@@ -35,5 +35,15 @@
         "input_tokens": 3289,
         "output_tokens": 3451,
         "stop_reason": "end_turn"
+    },
+    {
+        "round": 6,
+        "type": "final_uncovered_branch_optimization",
+        "coverage_before_round": 56.42,
+        "requested_tests": 30,
+        "generated_tests": 30,
+        "input_tokens": 5038,
+        "output_tokens": 3230,
+        "stop_reason": "end_turn"
     }
 ]

@@ -1,0 +1,184 @@
+{
+    "tests": [
+        {
+            "id": "R6-001",
+            "command": "printf 'xababY abab\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -w '\\(ab\\)\\1'",
+            "category": "backref -w",
+            "reason": "Embedded backref match fails word check, later standalone valid"
+        },
+        {
+            "id": "R6-002",
+            "command": "printf 'xab ab\\naaX aa\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -w '\\(a*\\)\\1'",
+            "category": "backref -w",
+            "reason": "nullable group backref with word-boundary rejection and retry"
+        },
+        {
+            "id": "R6-003",
+            "command": "printf 'foo abab bar\\nfooabab bar\\n' | ../versions.alt/versions.orig/v0/grep.exe -n -G -w '\\(ab\\)\\1'",
+            "category": "backref -w",
+            "reason": "match starts after word char vs standalone"
+        },
+        {
+            "id": "R6-004",
+            "command": "printf 'aab\\nbb c\\nxccy\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -w '\\([a-z]\\)\\1'",
+            "category": "backref -w",
+            "reason": "match ends before word char, first candidate rejected"
+        },
+        {
+            "id": "R6-005",
+            "command": "printf '11 \\n!!x\\n!! y\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -w '\\([^a-z]\\)\\1'",
+            "category": "backref -w",
+            "reason": "negated set backref with -w"
+        },
+        {
+            "id": "R6-006",
+            "command": "printf 'abcdabcd\\ncdcd x\\nxabab cdcd\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -w '\\(ab\\|cd\\)\\1'",
+            "category": "backref -w",
+            "reason": "alternation yielding different candidate lengths with -w"
+        },
+        {
+            "id": "R6-007",
+            "command": "printf 'abab\\nababab\\nab\\nxabab\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -x '^\\(ab\\)\\1$'",
+            "category": "backref -x",
+            "reason": "match_lines with backref regex fallback"
+        },
+        {
+            "id": "R6-008",
+            "command": "printf '\\naa\\naaaa\\naaa\\n' | ../versions.alt/versions.orig/v0/grep.exe -n -G -x '^\\(a*\\)\\1$'",
+            "category": "backref -x",
+            "reason": "nullable group whole-line with empty line"
+        },
+        {
+            "id": "R6-009",
+            "command": "printf 'aa\\nabab\\ncdcd\\nabcd\\nxcdcd\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -x '\\(ab\\|cd\\)\\1'",
+            "category": "backref -x",
+            "reason": "-x with alternation backref without anchors"
+        },
+        {
+            "id": "R6-010",
+            "command": "printf 'ABab\\nAbAB\\naa\\nAA\\nxABabY\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -i '\\(ab\\)\\1'",
+            "category": "backref -i",
+            "reason": "case-folded regex fallback translate path"
+        },
+        {
+            "id": "R6-011",
+            "command": "printf 'Aa b\\nxAAy AA\\nAb\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -i -w '\\([a-z]\\)\\1'",
+            "category": "backref -i -w",
+            "reason": "case fold plus word check in fallback"
+        },
+        {
+            "id": "R6-012",
+            "command": "printf 'ABAB\\nAbAB\\nABABx\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -i -x '\\(ab\\)\\1'",
+            "category": "backref -i -x",
+            "reason": "case fold with whole-line backref"
+        },
+        {
+            "id": "R6-013",
+            "command": "printf 'ab\\naaab\\naba\\naaaaab\\nb\\n\\n' | ../versions.alt/versions.orig/v0/grep.exe -n '\\(a*\\)*b'",
+            "category": "nested nullable",
+            "reason": "star of nullable group backtracking"
+        },
+        {
+            "id": "R6-014",
+            "command": "printf 'ab\\nbbaa\\n\\nabba\\nc\\n' | ../versions.alt/versions.orig/v0/grep.exe -x '\\(\\(a*\\)*\\(b*\\)*\\)*'",
+            "category": "nested nullable",
+            "reason": "deeply nested nullable repetitions"
+        },
+        {
+            "id": "R6-015",
+            "command": "printf 'aab\\nabab\\nb\\nabb\\n' | ../versions.alt/versions.orig/v0/grep.exe -E -o '(a|ab)*b'",
+            "category": "backtracking",
+            "reason": "overlapping alternatives with failure stack"
+        },
+        {
+            "id": "R6-016",
+            "command": "printf 'aab\\naaaab\\nab\\nabb\\n' | ../versions.alt/versions.orig/v0/grep.exe -n '\\(a*\\)\\1b'",
+            "category": "backtracking",
+            "reason": "backref with greedy group backtracking"
+        },
+        {
+            "id": "R6-017",
+            "command": "printf 'aab\\nbba\\n' | ../versions.alt/versions.orig/v0/grep.exe '\\(a*\\)*a'",
+            "category": "backtracking",
+            "reason": "nullable star then literal"
+        },
+        {
+            "id": "R6-018",
+            "command": "printf 'a1b\\n55\\nab\\n..\\n' | ../versions.alt/versions.orig/v0/grep.exe -E '([[:digit:]])\\1|(.)\\2\\2'",
+            "category": "dot/charset backref",
+            "reason": "class and dot with multiple backrefs"
+        },
+        {
+            "id": "R6-019",
+            "command": "printf 'a \\t b\\n\\tx\\nab\\n' | ../versions.alt/versions.orig/v0/grep.exe -c '[[:blank:]]\\{1,\\}'",
+            "category": "posix class",
+            "reason": "blank class with interval"
+        },
+        {
+            "id": "R6-020",
+            "command": "printf 'a\\001b\\nabc\\n\\177\\n' | ../versions.alt/versions.orig/v0/grep.exe -c '[[:cntrl:]]'",
+            "category": "posix class",
+            "reason": "cntrl class"
+        },
+        {
+            "id": "R6-021",
+            "command": "printf 'a b\\n   \\nabc\\n' | ../versions.alt/versions.orig/v0/grep.exe '^[[:graph:]]*$'",
+            "category": "posix class",
+            "reason": "graph class with anchors"
+        },
+        {
+            "id": "R6-022",
+            "command": "printf 'ab c\\n\\001\\n  \\n' | ../versions.alt/versions.orig/v0/grep.exe -E -i '^[[:print:][:cntrl:]]+$'",
+            "category": "posix class",
+            "reason": "multiple classes in one bracket, print"
+        },
+        {
+            "id": "R6-023",
+            "command": "printf 'aaa\\naa\\nb\\n' | ../versions.alt/versions.orig/v0/grep.exe -x 'a\\{3\\}\\|a\\{,1\\}\\|b\\{0,1\\}'",
+            "category": "interval",
+            "reason": "BRE interval forms {m} {,n} {0,1}"
+        },
+        {
+            "id": "R6-024",
+            "command": "printf 'aaa\\naaaa\\naa\\n' | ../versions.alt/versions.orig/v0/grep.exe -E -x 'a{3,}|a{,1}'",
+            "category": "interval",
+            "reason": "ERE open-ended and {,n} intervals"
+        },
+        {
+            "id": "R6-025",
+            "command": "printf 'abx\\ncd\\nxcd\\nfoo\\nbaz\\nbar\\n' | ../versions.alt/versions.orig/v0/grep.exe -e '^foo$' -e 'bar$' -e '^baz' -e 'ab$\\|^cd' -e '\\(a\\|^x\\)b'",
+            "category": "anchors",
+            "reason": "multiple -e with anchors before alternation and in groups"
+        },
+        {
+            "id": "R6-026",
+            "command": "printf 'foo'  | ../versions.alt/versions.orig/v0/grep.exe -F -x foo",
+            "category": "fixed no newline",
+            "reason": "Fexecute last line without newline with -x"
+        },
+        {
+            "id": "R6-027",
+            "command": "printf 'xfooX foo' | ../versions.alt/versions.orig/v0/grep.exe -F -w foo",
+            "category": "fixed -w no newline",
+            "reason": "invalid then valid candidate, no trailing newline"
+        },
+        {
+            "id": "R6-028",
+            "command": "printf 'foobar foo\\nabcfoo foo bar\\n' | ../versions.alt/versions.orig/v0/grep.exe -F -w -e foo -e bar",
+            "category": "fixed -w",
+            "reason": "multiple keywords with invalid-then-valid candidates"
+        },
+        {
+            "id": "R6-029",
+            "command": "printf 'a\\n\\nb\\n' | ../versions.alt/versions.orig/v0/grep.exe -F -e '' -e foo -e foo",
+            "category": "empty fixed",
+            "reason": "empty keyword min length zero and duplicate keywords"
+        },
+        {
+            "id": "R6-030",
+            "command": "printf 'aab\\nbaa\\nabb\\nh\\nabaa\\nxyz\\n' | ../versions.alt/versions.orig/v0/grep.exe -F -e d -e b -e f -e a -e c -e e -e g -e aa -e aaa -e aab -e ab -e aba -e abb -e ba -e baa",
+            "category": "keyword tree",
+            "reason": "kwsincr balancing with prefix-sharing mixed order"
+        }
+    ]
+}
