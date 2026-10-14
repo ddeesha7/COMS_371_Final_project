@@ -1,0 +1,664 @@
+{
+  "tests": [
+    {
+      "id": "R7-001",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '(a|ab)+b'"
+    },
+    {
+      "id": "R7-002",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '^(a|aa)*b$'"
+    },
+    {
+      "id": "R7-003",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '(ab|a)*b'"
+    },
+    {
+      "id": "R7-004",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '(a*)(b*)\\1'"
+    },
+    {
+      "id": "R7-005",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '(ab|cd){0,3}'"
+    },
+    {
+      "id": "R7-006",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e 'a{0,1}b{1,3}'"
+    },
+    {
+      "id": "R7-007",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e 'a{2,4}'"
+    },
+    {
+      "id": "R7-008",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e 'a{0,}'"
+    },
+    {
+      "id": "R7-009",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '(a|b)?c'"
+    },
+    {
+      "id": "R7-010",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '(ab)*'"
+    },
+    {
+      "id": "R7-011",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '(a|b|c){2,5}'"
+    },
+    {
+      "id": "R7-012",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '([a-z]+)\\1'"
+    },
+    {
+      "id": "R7-013",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '^([[:alpha:]]+)([[:digit:]]*)$'"
+    },
+    {
+      "id": "R7-014",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '^[^[:digit:]]*$'"
+    },
+    {
+      "id": "R7-015",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '^[[:space:]]*$'"
+    },
+    {
+      "id": "R7-016",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '^[[:punct:]]+$'"
+    },
+    {
+      "id": "R7-017",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '[a-z][[:digit:]]?'"
+    },
+    {
+      "id": "R7-018",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '^[a-z]{1,5}$'"
+    },
+    {
+      "id": "R7-019",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '(a|b)*c?'"
+    },
+    {
+      "id": "R7-020",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '(a?)+b'"
+    },
+    {
+      "id": "R7-021",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '(a+)+b'"
+    },
+    {
+      "id": "R7-022",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '(ab|ba|a)+'"
+    },
+    {
+      "id": "R7-023",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '(a|b)(c|d)'"
+    },
+    {
+      "id": "R7-024",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '(abc|abcd)'"
+    },
+    {
+      "id": "R7-025",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '^(a|b)*$'"
+    },
+    {
+      "id": "R7-026",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '[a-z][^a-z]'"
+    },
+    {
+      "id": "R7-027",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '(foo|bar|baz)$'"
+    },
+    {
+      "id": "R7-028",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '^.{0,4}$'"
+    },
+    {
+      "id": "R7-029",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '^a.*b$'"
+    },
+    {
+      "id": "R7-030",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -e '^[[:alnum:]_]+$'"
+    },
+    {
+      "id": "R7-031",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G -n -e '\\(ab\\)\\1'"
+    },
+    {
+      "id": "R7-032",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G -n -e '\\(a\\|ab\\)b'"
+    },
+    {
+      "id": "R7-033",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G -n -e '\\(a*\\)\\1'"
+    },
+    {
+      "id": "R7-034",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G -n -e '\\(a\\{1,3\\}\\)b'"
+    },
+    {
+      "id": "R7-035",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G -n -e '\\(a\\(b\\)\\2\\)'"
+    },
+    {
+      "id": "R7-036",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G -n -e '^\\(ab\\)\\{1,3\\}$'"
+    },
+    {
+      "id": "R7-037",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G -n -e '\\(^a\\|b$\\)'"
+    },
+    {
+      "id": "R7-038",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G -n -e '[^[:space:]]*'"
+    },
+    {
+      "id": "R7-039",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G -n -e '^a\\{0,\\}b$'"
+    },
+    {
+      "id": "R7-040",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G -n -e '\\(a\\|b\\)*c'"
+    },
+    {
+      "id": "R7-041",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G -n -e '\\([a-z]\\)\\1'"
+    },
+    {
+      "id": "R7-042",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G -n -e '\\(ab\\)\\(cd\\)\\2\\1'"
+    },
+    {
+      "id": "R7-043",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G -n -e '\\(a*\\)b\\1'"
+    },
+    {
+      "id": "R7-044",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G -n -e '^\\(a\\|aa\\)*b$'"
+    },
+    {
+      "id": "R7-045",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G -n -e 'a\\{2,4\\}b'"
+    },
+    {
+      "id": "R7-046",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -F -n -e abc"
+    },
+    {
+      "id": "R7-047",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -F -n -e a-b"
+    },
+    {
+      "id": "R7-048",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -F -n -e ''"
+    },
+    {
+      "id": "R7-049",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -F -n -e 'foo bar'"
+    },
+    {
+      "id": "R7-050",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E '('"
+    },
+    {
+      "id": "R7-051",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E '[abc'"
+    },
+    {
+      "id": "R7-052",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E '[z-a]'"
+    },
+    {
+      "id": "R7-053",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E 'a{4,2}'"
+    },
+    {
+      "id": "R7-054",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E '(a|b'"
+    },
+    {
+      "id": "R7-055",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E '[[:madeup:]]'"
+    },
+    {
+      "id": "R7-056",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E '\\'"
+    },
+    {
+      "id": "R7-057",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E '[=a=]'"
+    },
+    {
+      "id": "R7-058",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G '\\('"
+    },
+    {
+      "id": "R7-059",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G '\\(abc'"
+    },
+    {
+      "id": "R7-060",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G '['"
+    },
+    {
+      "id": "R7-061",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G '[z-a]'"
+    },
+    {
+      "id": "R7-062",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G 'a\\{3,1\\}'"
+    },
+    {
+      "id": "R7-063",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G '\\1abc'"
+    },
+    {
+      "id": "R7-064",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E '[[:digit:]'"
+    },
+    {
+      "id": "R7-065",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E '(a**)'"
+    },
+    {
+      "id": "R7-066",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -n -i abc"
+    },
+    {
+      "id": "R7-067",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -v -c abc"
+    },
+    {
+      "id": "R7-068",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -l abc"
+    },
+    {
+      "id": "R7-069",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -L abc"
+    },
+    {
+      "id": "R7-070",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -q abc"
+    },
+    {
+      "id": "R7-071",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -w abc"
+    },
+    {
+      "id": "R7-072",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -x abc"
+    },
+    {
+      "id": "R7-073",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -b abc"
+    },
+    {
+      "id": "R7-074",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -h abc"
+    },
+    {
+      "id": "R7-075",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -s abc"
+    },
+    {
+      "id": "R7-076",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -A 2 abc"
+    },
+    {
+      "id": "R7-077",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -B 2 abc"
+    },
+    {
+      "id": "R7-078",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -C 1 abc"
+    },
+    {
+      "id": "R7-079",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -2 abc"
+    },
+    {
+      "id": "R7-080",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -A0 abc"
+    },
+    {
+      "id": "R7-081",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -B0 abc"
+    },
+    {
+      "id": "R7-082",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -C0 abc"
+    },
+    {
+      "id": "R7-083",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -i -w abc"
+    },
+    {
+      "id": "R7-084",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -i -x abc"
+    },
+    {
+      "id": "R7-085",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -F -i abc"
+    },
+    {
+      "id": "R7-086",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -F -w abc"
+    },
+    {
+      "id": "R7-087",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -F -x abc"
+    },
+    {
+      "id": "R7-088",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -w 'a|b'"
+    },
+    {
+      "id": "R7-089",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -x 'a|b'"
+    },
+    {
+      "id": "R7-090",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -- -abc"
+    },
+    {
+      "id": "R7-091",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -e abc -e bar"
+    },
+    {
+      "id": "R7-092",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -e abc -e ''"
+    },
+    {
+      "id": "R7-093",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -e abc -e abc"
+    },
+    {
+      "id": "R7-094",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -F -e a -e ab -e abc"
+    },
+    {
+      "id": "R7-095",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -F -e abc -e a -e ab"
+    },
+    {
+      "id": "R7-096",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -F -e foo -e bar -e baz"
+    },
+    {
+      "id": "R7-097",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -F -e zzzz -e yyy -e xxx"
+    },
+    {
+      "id": "R7-098",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -n -v abc"
+    },
+    {
+      "id": "R7-099",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -n -c abc"
+    },
+    {
+      "id": "R7-100",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -n -l abc"
+    },
+    {
+      "id": "R7-101",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -n -L abc"
+    },
+    {
+      "id": "R7-102",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -i '(ab|bc)+'"
+    },
+    {
+      "id": "R7-103",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G -i '\\(ab\\)\\1'"
+    },
+    {
+      "id": "R7-104",
+      "command": "../versions.alt/versions.orig/v0/grep.exe abc ../inputs/grep0.dat ../inputs/grep1.dat"
+    },
+    {
+      "id": "R7-105",
+      "command": "../versions.alt/versions.orig/v0/grep.exe -n abc ../inputs/grep0.dat ../inputs/grep1.dat"
+    },
+    {
+      "id": "R7-106",
+      "command": "../versions.alt/versions.orig/v0/grep.exe -c abc ../inputs/grep0.dat ../inputs/grep1.dat"
+    },
+    {
+      "id": "R7-107",
+      "command": "../versions.alt/versions.orig/v0/grep.exe -l abc ../inputs/grep0.dat ../inputs/grep1.dat"
+    },
+    {
+      "id": "R7-108",
+      "command": "../versions.alt/versions.orig/v0/grep.exe -L abc ../inputs/grep0.dat ../inputs/grep1.dat"
+    },
+    {
+      "id": "R7-109",
+      "command": "../versions.alt/versions.orig/v0/grep.exe -q abc ../inputs/grep0.dat ../inputs/grep1.dat"
+    },
+    {
+      "id": "R7-110",
+      "command": "../versions.alt/versions.orig/v0/grep.exe -s abc ../inputs/nonexistent.dat ../inputs/grep0.dat"
+    },
+    {
+      "id": "R7-111",
+      "command": "../versions.alt/versions.orig/v0/grep.exe abc ../inputs/nonexistent.dat ../inputs/grep0.dat"
+    },
+    {
+      "id": "R7-112",
+      "command": "../versions.alt/versions.orig/v0/grep.exe abc - ../inputs/grep0.dat"
+    },
+    {
+      "id": "R7-113",
+      "command": "../versions.alt/versions.orig/v0/grep.exe -i abc ../inputs/grepBinary"
+    },
+    {
+      "id": "R7-114",
+      "command": "../versions.alt/versions.orig/v0/grep.exe -a abc ../inputs/grepBinary"
+    },
+    {
+      "id": "R7-115",
+      "command": "../versions.alt/versions.orig/v0/grep.exe abc ../inputs/grepNull.dat"
+    },
+    {
+      "id": "R7-116",
+      "command": "../versions.alt/versions.orig/v0/grep.exe -e abc ../inputs/grep0.dat"
+    },
+    {
+      "id": "R7-117",
+      "command": "../versions.alt/versions.orig/v0/grep.exe -f ../inputs/grep1.dat ../inputs/grep0.dat"
+    },
+    {
+      "id": "R7-118",
+      "command": "../versions.alt/versions.orig/v0/grep.exe abc ../inputs/grepDir"
+    },
+    {
+      "id": "R7-119",
+      "command": "../versions.alt/versions.orig/v0/grep.exe abc ../inputs/grep0.dat ../inputs/grepDir/grep1.dat"
+    },
+    {
+      "id": "R7-120",
+      "command": "printf '' | ../versions.alt/versions.orig/v0/grep.exe -E -n -A2 -B2 '(abc|foo|a+)'"
+    },
+    {
+      "id": "R7-121",
+      "command": "printf a | ../versions.alt/versions.orig/v0/grep.exe -E -n -A2 -B2 '(abc|foo|a+)'"
+    },
+    {
+      "id": "R7-122",
+      "command": "printf abc | ../versions.alt/versions.orig/v0/grep.exe -E -n -A2 -B2 '(abc|foo|a+)'"
+    },
+    {
+      "id": "R7-123",
+      "command": "printf 'abc\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -A2 -B2 '(abc|foo|a+)'"
+    },
+    {
+      "id": "R7-124",
+      "command": "printf '\nabc' | ../versions.alt/versions.orig/v0/grep.exe -E -n -A2 -B2 '(abc|foo|a+)'"
+    },
+    {
+      "id": "R7-125",
+      "command": "printf '\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -A2 -B2 '(abc|foo|a+)'"
+    },
+    {
+      "id": "R7-126",
+      "command": "printf 'a\nb\na\nb\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -A2 -B2 '(abc|foo|a+)'"
+    },
+    {
+      "id": "R7-127",
+      "command": "printf 'ab\u0000cd\nabc\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -A2 -B2 '(abc|foo|a+)'"
+    },
+    {
+      "id": "R7-128",
+      "command": "printf 'abcd\r\nabcd\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -A2 -B2 '(abc|foo|a+)'"
+    },
+    {
+      "id": "R7-129",
+      "command": "printf 'AAAA\nBBBB\naaaa\nbbbb\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -A2 -B2 '(abc|foo|a+)'"
+    },
+    {
+      "id": "R7-130",
+      "command": "printf 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -A2 -B2 '(abc|foo|a+)'"
+    },
+    {
+      "id": "R7-131",
+      "command": "printf 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzabc\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -A2 -B2 '(abc|foo|a+)'"
+    },
+    {
+      "id": "R7-132",
+      "command": "printf 'foo\nbar\nfoo\nbar\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -A2 -B2 '(abc|foo|a+)'"
+    },
+    {
+      "id": "R7-133",
+      "command": "printf '1\n2\n3\n4\n5\nabc\n7\n8\n9\n' | ../versions.alt/versions.orig/v0/grep.exe -E -n -A2 -B2 '(abc|foo|a+)'"
+    },
+    {
+      "id": "R7-134",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe --help"
+    },
+    {
+      "id": "R7-135",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe --version"
+    },
+    {
+      "id": "R7-136",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe --line-number abc"
+    },
+    {
+      "id": "R7-137",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe --count abc"
+    },
+    {
+      "id": "R7-138",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe --ignore-case abc"
+    },
+    {
+      "id": "R7-139",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe --word-regexp abc"
+    },
+    {
+      "id": "R7-140",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe --line-regexp abc"
+    },
+    {
+      "id": "R7-141",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe --after-context=2 abc"
+    },
+    {
+      "id": "R7-142",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe --before-context=2 abc"
+    },
+    {
+      "id": "R7-143",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe --context=2 abc"
+    },
+    {
+      "id": "R7-144",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe --no-filename abc"
+    },
+    {
+      "id": "R7-145",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe --with-filename abc"
+    },
+    {
+      "id": "R7-146",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe --quiet abc"
+    },
+    {
+      "id": "R7-147",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe --silent abc"
+    },
+    {
+      "id": "R7-148",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe --regexp=abc"
+    },
+    {
+      "id": "R7-149",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe --regexp abc"
+    },
+    {
+      "id": "R7-150",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe --bad-option abc"
+    },
+    {
+      "id": "R7-151",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -Z abc"
+    },
+    {
+      "id": "R7-152",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -A abc"
+    },
+    {
+      "id": "R7-153",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -B abc"
+    },
+    {
+      "id": "R7-154",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -C abc"
+    },
+    {
+      "id": "R7-155",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -e"
+    },
+    {
+      "id": "R7-156",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -f"
+    },
+    {
+      "id": "R7-157",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe --regexp= abc"
+    },
+    {
+      "id": "R7-158",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -i -x -e '^a?$'"
+    },
+    {
+      "id": "R7-159",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -i -x -e '^(a|aa)+$'"
+    },
+    {
+      "id": "R7-160",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -i -x -e '^(ab)*ab$'"
+    },
+    {
+      "id": "R7-161",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -i -x -e 'a*b*c*'"
+    },
+    {
+      "id": "R7-162",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -E -i -x -e '^(foo|bar)?$'"
+    },
+    {
+      "id": "R7-163",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G -i -x -e 'a\\{0,2\\}b\\{1,\\}'"
+    },
+    {
+      "id": "R7-164",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -G -i -x -e '\\(a\\|aa\\)*'"
+    },
+    {
+      "id": "R7-165",
+      "command": "printf 'abc\nabcd\naabb\nabab\naaaab\nbbb\n1234\nABC\nxyz\n\nfoo bar\nfoo\nbar\na-b\nababab\n' | ../versions.alt/versions.orig/v0/grep.exe -F -i -x -e abc"
+    }
+  ]
+}
