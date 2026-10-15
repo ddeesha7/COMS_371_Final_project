@@ -1,0 +1,184 @@
+{
+    "tests": [
+        {
+            "id": "DEMO-001",
+            "command": "printf 'xababY abab\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -w '\\(ab\\)\\1'",
+            "category": "backreference -w",
+            "reason": "Embedded backref match fails word check, later standalone valid; match_words loop in regex fallback"
+        },
+        {
+            "id": "DEMO-002",
+            "command": "printf 'xab ab\\naaX aa\\nfoo abab bar\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -w '\\(a*\\)\\1'",
+            "category": "backreference -w",
+            "reason": "Nullable group backref with word boundary, varying match lengths"
+        },
+        {
+            "id": "DEMO-003",
+            "command": "printf 'xaa bb\\nab cc\\naab\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -w '\\([a-z]\\)\\1'",
+            "category": "backreference -w",
+            "reason": "Charset backref; match starts after word char then later valid candidate"
+        },
+        {
+            "id": "DEMO-004",
+            "command": "printf '11x 22\\n!!a ??\\nab\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -w '\\([^a-z]\\)\\1'",
+            "category": "backreference -w",
+            "reason": "Negated set backref with -w; match ends before word char"
+        },
+        {
+            "id": "DEMO-005",
+            "command": "printf 'cdcdX cdcd\\nabab1\\nabcd\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -w '\\(ab\\|cd\\)\\1'",
+            "category": "backreference -w",
+            "reason": "Alternation backref -w, first candidate rejected"
+        },
+        {
+            "id": "DEMO-006",
+            "command": "printf 'aab\\nxaa aa\\n.. a\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -w '\\(.\\)\\1'",
+            "category": "backreference -w",
+            "reason": "Dot backref with -w loop, rejection then acceptance"
+        },
+        {
+            "id": "DEMO-007",
+            "command": "printf 'abab\\nababab\\nxabab\\n\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -x '^\\(ab\\)\\1$'",
+            "category": "backreference -x",
+            "reason": "match_lines with regex fallback, exact vs partial"
+        },
+        {
+            "id": "DEMO-008",
+            "command": "printf 'aaaa\\naaa\\n\\nb\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -x '\\(a*\\)\\1'",
+            "category": "backreference -x",
+            "reason": "Nullable group backref with whole-line, empty line"
+        },
+        {
+            "id": "DEMO-009",
+            "command": "printf 'cdcd\\nabcd\\nabab\\nxabab\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -x '\\(ab\\|cd\\)\\1'",
+            "category": "backreference -x",
+            "reason": "Alternation backref whole-line"
+        },
+        {
+            "id": "DEMO-010",
+            "command": "printf 'ABab\\nAbAB\\naa\\nAA\\nxABabY\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -i '\\(ab\\)\\1'",
+            "category": "backreference -i",
+            "reason": "Case-folded regex fallback translation path"
+        },
+        {
+            "id": "DEMO-011",
+            "command": "printf 'Aa b\\nxAA AA\\nab\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -i -w '\\([a-z]\\)\\1'",
+            "category": "backreference -i -w",
+            "reason": "Case fold plus word check in fallback"
+        },
+        {
+            "id": "DEMO-012",
+            "command": "printf 'ABab\\nABAB\\nxABab\\n' | ../versions.alt/versions.orig/v0/grep.exe -G -i -x '\\(ab\\)\\1'",
+            "category": "backreference -i -x",
+            "reason": "Case fold with match_lines"
+        },
+        {
+            "id": "DEMO-013",
+            "command": "printf 'ab\\naaab\\naba\\naaaaab\\nb\\n\\n' | ../versions.alt/versions.orig/v0/grep.exe -G '\\(a*\\)*b'",
+            "category": "nested nullable",
+            "reason": "Nullable star-of-star backtracking"
+        },
+        {
+            "id": "DEMO-014",
+            "command": "printf 'ab\\naaab\\naba\\nb\\n\\nbbaa\\n' | ../versions.alt/versions.orig/v0/grep.exe -G '\\(\\(a*\\)*\\(b*\\)*\\)*'",
+            "category": "nested nullable",
+            "reason": "Deep nested nullable groups, group state restore"
+        },
+        {
+            "id": "DEMO-015",
+            "command": "printf 'aab\\nabab\\nb\\nabb\\nxyz\\n' | ../versions.alt/versions.orig/v0/grep.exe -G '\\(a\\|ab\\)*b'",
+            "category": "alternation backtracking",
+            "reason": "Overlapping alternatives with repetition, failure stack"
+        },
+        {
+            "id": "DEMO-016",
+            "command": "printf 'aab\\naaaab\\nb\\nabab\\n' | ../versions.alt/versions.orig/v0/grep.exe -G '\\(a*\\)\\1b'",
+            "category": "backreference backtracking",
+            "reason": "Backref with variable-length group and backtracking"
+        },
+        {
+            "id": "DEMO-017",
+            "command": "printf '1122\\n12\\nab\\n99\\n' | ../versions.alt/versions.orig/v0/grep.exe -E '([[:digit:]])\\1'",
+            "category": "backreference class",
+            "reason": "Digit class with backref in full matcher"
+        },
+        {
+            "id": "DEMO-018",
+            "command": "printf 'a \\tb\\nab\\n\\t\\n  x\\n' | ../versions.alt/versions.orig/v0/grep.exe -E '^[[:blank:]]+[[:alpha:]]|[[:blank:]]{2,3}x'",
+            "category": "posix class",
+            "reason": "blank class with + and interval"
+        },
+        {
+            "id": "DEMO-019",
+            "command": "printf 'a\\001b\\nabc\\n\\037\\n' | ../versions.alt/versions.orig/v0/grep.exe '[[:cntrl:]]'",
+            "category": "posix class",
+            "reason": "cntrl class processing"
+        },
+        {
+            "id": "DEMO-020",
+            "command": "printf 'abc\\n \\n\\t\\n!x\\n' | ../versions.alt/versions.orig/v0/grep.exe -E '^[[:graph:]]+$|[^[:print:]]'",
+            "category": "posix class",
+            "reason": "graph and negated print classes"
+        },
+        {
+            "id": "DEMO-021",
+            "command": "printf 'aaa\\naa\\naaaa\\na\\n\\n' | ../versions.alt/versions.orig/v0/grep.exe -x 'a\\{3,\\}\\|a\\{,1\\}'",
+            "category": "interval",
+            "reason": "BRE open-ended and omitted-min intervals"
+        },
+        {
+            "id": "DEMO-022",
+            "command": "printf 'aaa\\naa\\nb\\naaaa\\n' | ../versions.alt/versions.orig/v0/grep.exe -E -x 'a{3}|a{0,1}|a{,2}b'",
+            "category": "interval",
+            "reason": "ERE interval forms"
+        },
+        {
+            "id": "DEMO-023",
+            "command": "printf 'xab\\ncd\\nzab\\nbaz\\nfoo\\n' | ../versions.alt/versions.orig/v0/grep.exe -e 'ab$\\|^cd' -e '\\(ab$\\)\\|^ba' -e '\\(a\\|^f\\)oo'",
+            "category": "anchors",
+            "reason": "Anchors around alternation and groups with multiple -e"
+        },
+        {
+            "id": "DEMO-024",
+            "command": "printf 'foo'  | ../versions.alt/versions.orig/v0/grep.exe -F -x foo",
+            "category": "fixed no newline",
+            "reason": "Fexecute match at EOF without trailing newline with -x"
+        },
+        {
+            "id": "DEMO-025",
+            "command": "printf 'xfooX foo' | ../versions.alt/versions.orig/v0/grep.exe -F -w foo",
+            "category": "fixed -w no newline",
+            "reason": "Invalid candidate then valid at EOF without newline"
+        },
+        {
+            "id": "DEMO-026",
+            "command": "printf 'foobar foo\\nabcfoo x\\nxbarY bar\\n' | ../versions.alt/versions.orig/v0/grep.exe -F -w -e foo -e bar",
+            "category": "fixed -w",
+            "reason": "Multiple keywords rejected then valid whole word"
+        },
+        {
+            "id": "DEMO-027",
+            "command": "printf 'abc\\n\\nxyz\\n' | ../versions.alt/versions.orig/v0/grep.exe -F -e ''",
+            "category": "empty fixed",
+            "reason": "Empty keyword min length zero path"
+        },
+        {
+            "id": "DEMO-028",
+            "command": "printf 'foo\\nbar\\nbaz\\nfoo bar\\n' | ../versions.alt/versions.orig/v0/grep.exe -F -e foo -e foo -e bar -e bar",
+            "category": "duplicate keywords",
+            "reason": "Duplicate keyword insertion path"
+        },
+        {
+            "id": "DEMO-029",
+            "command": "printf 'g\\nzz\\naab\\nbaa\\nq\\n' | ../versions.alt/versions.orig/v0/grep.exe -F -e d -e b -e f -e a -e c -e e -e g -e aa -e aaa -e aab -e ab -e aba -e abb -e ba -e baa -e h",
+            "category": "kwset tree",
+            "reason": "Mixed-order insertion and prefix-sharing keywords for rotations"
+        },
+        {
+            "id": "DEMO-030",
+            "command": "printf 'a+b\\naab\\na?\\n^$<>\\\\\\n' | ../versions.alt/versions.orig/v0/grep.exe -e 'a\\+b' -e 'a?' -e '\\^\\$' -e '\\\\' -e '\\<a'",
+            "category": "escapes",
+            "reason": "Escaped special chars and BRE \\+ operator vs literal ?"
+        }
+    ]
+}
